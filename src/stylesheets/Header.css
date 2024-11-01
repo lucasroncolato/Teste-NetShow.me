@@ -1,0 +1,79 @@
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 18px;
+  height: 18px;
+  background-color: rgba(176, 176, 176, 1);
+  border-radius: 4px;
+}
+
+.logoText {
+  color: #fff;
+  font: 800 24px Sora, sans-serif;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.menuItem {
+  border-radius: 8px;
+  color: #fff;
+  font: 400 16px Nunito Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  padding: 6px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.menuIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.userActions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.searchButton,
+.userProfileButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.searchIcon,
+.userIcon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 991px) {
+  .header {
+    padding: 0 20px;
+  }
+}

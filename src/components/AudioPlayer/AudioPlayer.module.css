@@ -1,0 +1,183 @@
+.audioPlayer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 0px;
+}
+
+@media (max-width: 991px) {
+  .audioPlayer {
+    max-width: 100%;
+  }
+}
+
+.timeControls {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .timeControls {
+    max-width: 100%;
+  }
+}
+
+.timeDisplay {
+  font-feature-settings: "liga" off, "clig" off;
+  align-self: stretch;
+  color: var(--Common-White-100p, #fff);
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 0.1px;
+  margin: auto 0;
+  font: 600 14px/2 Inter, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .timeDisplay {
+    white-space: initial;
+  }
+}
+
+.progressBar {
+  background-color: rgba(255, 255, 255, 0.3);
+  align-self: stretch;
+  position: relative;
+  display: flex;
+  min-width: 240px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  flex-basis: 0%;
+  margin: auto 0;
+}
+
+@media (max-width: 991px) {
+  .progressBar {
+    max-width: 100%;
+  }
+}
+
+.progress {
+  background-color: rgba(43, 161, 218, 1);
+  z-index: 0;
+  height: 4px;
+  /* Mantenha a altura */
+  /* Remova a largura fixa */
+  transition: width 0.1s ease;
+  /* Adiciona uma transição suave */
+}
+
+.progressHandle {
+  border-radius: 200px;
+  background-color: rgba(43, 161, 218, 1);
+  align-self: flex-start;
+  position: absolute;
+  z-index: 1;
+  /* Aumenta o z-index para garantir que fique acima */
+  display: flex;
+  width: 14px;
+  height: 14px;
+  right: 0;
+  /* Posiciona o controle de progresso */
+  bottom: -5px;
+}
+
+.controlsContainer {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .controlsContainer {
+    max-width: 100%;
+  }
+}
+
+.leftControls {
+  display: flex;
+  min-width: 240px;
+  min-height: 24px;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex: 1;
+  flex-basis: 0%;
+}
+
+@media (max-width: 991px) {
+  .leftControls {
+    max-width: 100%;
+  }
+}
+
+.controlIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.volumeControl {
+  display: flex;
+  align-items: center;
+  margin: auto 0;
+  position: relative;
+  width: 10%;
+  height: 4px;
+}
+
+.volumeBar {
+  background-color: rgba(0, 0, 0, 0.2);
+  align-self: stretch;
+  width: 100%;
+  height: 4px;
+}
+
+.volumeSlider {
+  height: 4px;
+  position: absolute;
+  top: 0;
+  transition: width 0.1s ease;
+}
+
+.volumeHandle {
+  background-color: rgba(43, 161, 218, 1);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: -3px;
+  transform: translateX(-50%);
+}
+
+
+.rightControls {
+  display: flex;
+  min-height: 24px;
+  align-items: flex-start;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,124 @@
+
+.heroText {
+  display: flex;
+  width: 600px;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 50px 0 -66px 60px;
+}
+
+@media (max-width: 991px) {
+  .heroText {
+    margin: 40px 0 10px;
+  }
+}
+
+.overTheCast {
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  font-feature-settings: "liga" off, "clig" off;
+  letter-spacing: 0.15px;
+  font: 400 16px Inter, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .overTheCast {
+    max-width: 100%;
+  }
+}
+
+.title {
+  color: var(--Dark-Text-Primary, #fff);
+  font-feature-settings: "liga" off, "clig" off;
+  margin-top: 16px;
+  font: 500 34px/42px Inter, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .title {
+    max-width: 100%;
+  }
+}
+
+.description {
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  font-feature-settings: "liga" off, "clig" off;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+  margin-top: 16px;
+}
+
+@media (max-width: 991px) {
+  .description {
+    max-width: 100%;
+  }
+}
+
+.buttonContainer {
+  margin-top: 24px;
+}
+
+.playButton {
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--Primria, #fff);
+  display: flex;
+  overflow: hidden;
+  padding: 11px 22px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .playButton {
+    padding: 11px 20px;
+  }
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.playIcon {
+  aspect-ratio: 0.82;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+}
+
+.buttonText {
+  color: #000;
+  font-weight: 700;
+}
+
+.loadingBanners {
+  display: flex;
+  margin-top: 32px;
+  width: 100%;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .loadingBanners {
+    max-width: 100%;
+  }
+}
+
+.loadingBanner {
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  width: 10px;
+  height: 10px;
+}
+
+.loadingBannerActive {
+  background-color: rgba(255, 255, 255, 0.7);
+}

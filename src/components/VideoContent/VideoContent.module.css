@@ -1,0 +1,703 @@
+
+.videoContent {
+  background-color: #131313;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mainContent {
+  background-color: #000;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .mainContent {
+    max-width: 100%;
+  }
+}
+
+.header {
+  align-items: center;
+  background: var(--Header, #3d3d3d);
+  display: flex;
+  width: 100%;
+  gap: 4px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 20px 60px;
+}
+
+@media (max-width: 991px) {
+  .header {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.logo {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--Dark-Text-Primary, #fff);
+  white-space: nowrap;
+  justify-content: flex-start;
+  height: 100%;
+  width: 120px;
+  font: 800 24px Sora, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .logo {
+    white-space: initial;
+  }
+}
+
+.logoIcon {
+  border-radius: 4px;
+  background-color: #b0b0b0;
+  align-self: stretch;
+  width: 18px;
+  height: 18px;
+  margin: auto 0;
+}
+
+.logoText {
+  font-feature-settings: "liga" off, "clig" off;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.navigation {
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1;
+  flex-basis: 0%;
+  margin: auto 0;
+}
+
+@media (max-width: 991px) {
+  .navigation {
+    max-width: 100%;
+  }
+}
+
+.navItem {
+  border-radius: 8px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
+  padding: 6px 16px;
+  font-feature-settings: "liga" off, "clig" off;
+  color: var(--Dark-Text-Primary, #fff);
+  font: 400 16px Nunito Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.userActions {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: flex-end;
+  width: 120px;
+  margin: auto 0;
+}
+
+.searchButton,
+.userProfileButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.searchIcon,
+.userIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.userAvatar {
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  background: var(--Grey-600, #757575);
+  display: flex;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  padding: 0 8px;
+}
+
+.loadingIndicator {
+  position: absolute; /* Posiciona o indicador no centro do vídeo */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta a posição para o centro exato */
+  color: white; /* Cor do texto ou você pode usar um spinner */
+  font-size: 1.5rem; /* Tamanho do texto */
+  z-index: 10; /* Certifica-se de que fica acima do vídeo */
+}
+
+
+.videoPlayer {
+  align-self: center;
+  position: relative;
+  display: flex;
+  min-height: 520px;
+  width: 924px;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.videoWrapper {
+  background-color: #000;
+  align-self: stretch;
+  z-index: 0;
+  display: flex;
+  min-height: 520px;
+  width: 100%;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+}
+
+.videoControls {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  width: 924px;
+  flex-direction: column;
+  right: 0;
+  bottom: 0;
+  height: 80px;
+}
+
+.currentTime,
+.duration {
+  font-feature-settings: "liga" off, "clig" off;
+  align-self: stretch;
+  gap: 4px;
+  color: var(--Common-White-100p, #fff);
+  text-align: center;
+  letter-spacing: 0.1px;
+  margin: auto 0;
+  font: 600 14px/2 Inter, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .currentTime,
+  .duration {
+    white-space: initial;
+  }
+}
+
+.progressBar {
+  background-color: rgba(255, 255, 255, 0.3);
+  align-self: stretch;
+  position: relative;
+  display: flex;
+  min-width: 240px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  flex-basis: 0%;
+  margin: auto 0;
+}
+
+@media (max-width: 991px) {
+  .progressBar {
+    max-width: 100%;
+  }
+}
+
+.progress {
+  background-color: #2ba1da;
+  z-index: 0;
+  display: flex;
+  min-width: 240px;
+  width: 550px;
+  height: 4px;
+  margin: auto 0;
+}
+
+.progressHandle {
+  border-radius: 200px;
+  background-color: #2ba1da;
+  align-self: flex-start;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  width: 14px;
+  height: 14px;
+  right: 212px;
+  bottom: -5px;
+}
+
+.additionalControls {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .additionalControls {
+    max-width: 100%;
+  }
+}
+
+.controlButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.controlIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.volumeControl {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: auto 0;
+}
+
+.volumeBar {
+  background-color: #2ba1da;
+  align-self: stretch;
+  display: flex;
+  width: 54px;
+  height: 4px;
+  margin: auto 0;
+}
+
+.volumeHandle {
+  background-color: #2ba1da;
+  border-radius: 50%;
+  align-self: stretch;
+  display: flex;
+  width: 10px;
+  height: 10px;
+  margin: auto 0;
+}
+
+.closeButton {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  top: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.closeIcon {
+  width: 48px;
+  height: 48px;
+}
+
+.contentDetails {
+  display: flex;
+  width: 100%;
+  padding-top: 32px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media (max-width: 991px) {
+  .contentDetails {
+    max-width: 100%;
+  }
+}
+
+.contentTitle {
+  font-feature-settings: "liga" off, "clig" off;
+  align-self: flex-start;
+  gap: 16px;
+  color: var(--Dark-Text-Primary, #fff);
+  font: 600 24px/1 Inter, sans-serif;
+  margin: 0 0 8px;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .contentTitle {
+    padding: 0 20px;
+  }
+}
+
+.contentMeta {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  font-family: Nunito Sans, sans-serif;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .contentMeta {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.category {
+  border-radius: 100px;
+  background-color: #1e1e1e;
+  color: var(--Light-Primary-Contrast, #fff);
+  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.date {
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.addToListButton,
+.likeButton,
+.dislikeButton,
+.shareButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--Dark-Text-Primary, #fff);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 2;
+  cursor: pointer;
+  padding: 8px 11px;
+}
+
+.addIcon,
+.likeIcon,
+.dislikeIcon,
+.shareIcon {
+  width: 18px;
+  height: 22px;
+}
+
+.summaryTitle,
+.filesTitle,
+.textTitle,
+.audioTitle {
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  font-feature-settings: "liga" off, "clig" off;
+  font: 700 24px/1 Nunito Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  margin: 24px 0;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .summaryTitle,
+  .filesTitle,
+  .textTitle,
+  .audioTitle {
+    padding: 0 20px;
+  }
+}
+
+.summaryText,
+.contentText {
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  font-feature-settings: "liga" off, "clig" off;
+  font: 400 16px/24px Nunito Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .summaryText,
+  .contentText {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.complementaryFiles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .complementaryFiles {
+    padding: 0 20px;
+  }
+}
+
+.fileLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid var(--Dark-Text-Primary-Shades-30p, rgba(255, 255, 255, 0.3));
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  text-decoration: none;
+  padding: 11px 22px;
+  font: 600 16px/2 Inter, sans-serif;
+}
+
+.downloadIcon {
+  width: 18px;
+  height: 22px;
+}
+
+.audioPlayer {
+  width: calc(100% - 120px);
+  margin: 24px 60px;
+}
+
+@media (max-width: 991px) {
+  .audioPlayer {
+    width: calc(100% - 40px);
+    margin: 24px 20px;
+  }
+}
+
+.relatedContent {
+  background-color: #0d0d0d;
+  display: flex;
+  margin-top: 60px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 60px 0;
+}
+
+@media (max-width: 991px) {
+  .relatedContent {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}
+
+.relatedTitle {
+  color: var(--Dark-Text-Primary, #fff);
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  margin: 0;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .relatedTitle {
+    padding: 0 20px;
+  }
+}
+
+.relatedNavigation {
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  align-items: flex-start;
+  font-size: 16px;
+  color: var(--Primria, #fff);
+  letter-spacing: 0.15px;
+  justify-content: flex-end;
+  flex-grow: 1;
+  width: 926px;
+  margin: auto 0;
+  padding: 0 60px;
+}
+
+@media (max-width: 991px) {
+  .relatedNavigation {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.seeMoreButton {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  background: none;
+  border: none;
+  color: var(--Primria, #fff);
+  font-size: 16px;
+  letter-spacing: 0.15px;
+  cursor: pointer;
+}
+
+.arrowIcon {
+  width: 96px;
+  height: 48px;
+}
+
+.relatedItems {
+  display: flex;
+  margin-top: 16px;
+  width: 100%;
+  padding-left: 60px;
+  align-items: flex-start;
+  gap: 24px;
+  font-family: Inter, sans-serif;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+@media (max-width: 991px) {
+  .relatedItems {
+    max-width: 100%;
+    padding-left: 20px;
+  }
+}
+
+.relatedItem {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 290px;
+}
+
+.relatedImage {
+  aspect-ratio: 1.78;
+  object-fit: cover;
+  width: 290px;
+  align-self: center;
+  max-width: 100%;
+}
+
+.relatedItemDetails {
+  display: flex;
+  margin-top: 8px;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.relatedCategory {
+  color: var(--Dark-Text-Secondary, rgba(255, 255, 255, 0.7));
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.17px;
+}
+
+.relatedItemTitle {
+  font-feature-settings: "liga" off, "clig" off;
+  margin-top: 4px;
+  width: 100%;
+  font-size: 18px;
+  color: var(--Dark-Text-Primary, #fff);
+  font-weight: 600;
+  line-height: 25px;
+}
+
+.footer {
+  border-color: #292929;
+  border-top-width: 1px;
+  border-top-style: solid;
+  display: flex;
+  margin-top: 60px;
+  width: 100%;
+  flex-direction: column;
+  color: #fff;
+  justify-content: center;
+  padding: 16px 60px;
+  font: 700 12px/2 Nunito Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .footer {
+    max-width: 100%;
+    margin-top: 40px;
+    padding: 16px 20px;
+  }
+}
+
+.footerContent {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footerLinks {
+  display: flex;
+  min-width: 240px;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex: 1;
+  flex-basis: 0%;
+}
+
+.copyright {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.28px;
+}
+
+.footerLink {
+  color: #fff;
+  text-decoration: none;
+}
+
+.contactInfo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--Dark-Text-Primary, #fff);
+  line-height: 20px;
+}
+
+.phoneIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.phoneNumber {
+  font-feature-settings: "liga" off, "clig" off;
+}
+
+.developerInfo {
+  font-weight: 400;
+}
+
+.developerName {
+  font-weight: 700;
+}

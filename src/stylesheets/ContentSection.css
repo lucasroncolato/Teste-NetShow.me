@@ -1,0 +1,72 @@
+
+.contentSection {
+  margin-top: -201px;
+  padding: 0 60px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  color: #fff;
+  font: 700 24px/1 Nunito Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.seeMoreButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #fff;
+  font: 400 16px Nunito Sans, sans-serif;
+  cursor: pointer;
+}
+
+.seeMoreIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+}
+
+.contentList {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+}
+
+.contentItem {
+  flex: 0 0 290px;
+}
+
+.contentImage {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.contentInfo {
+  margin-top: 8px;
+}
+
+.contentCategory {
+  color: rgba(255, 255, 255, 0.7);
+  font: 400 14px Inter, sans-serif;
+  letter-spacing: 0.17px;
+}
+
+.contentTitle {
+  color: #fff;
+  font: 600 18px/25px Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  margin-top: 4px;
+}
+
+@media (max-width: 991px) {
+  .contentSection {
+    margin-top: -200px;
+    padding: 0 20px;
+  }
+}

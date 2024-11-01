@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AudioPlayer.module.css';
+import './AudioPlayer.css';
 import ControlButton from './ControlButton';
 import TimeDisplay from './TimeDisplay';
 import ProgressBar from './ProgressBar';
@@ -21,14 +21,14 @@ interface AudioPlayerProps {
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentTime, totalTime, videoRef, onPlayPause, isPlaying, onVolumeChange, volume, onMuteToggle, isMuted, onFullscreenToggle, isFullscreen }) => {
   return (
-    <section className={styles.audioPlayer} aria-label="Audio Player">
-      <div className={styles.timeControls}>
+    <section className="audioPlayer" aria-label="Audio Player">
+      <div className="timeControls">
         <TimeDisplay time={currentTime} label="Current Time" />
         <ProgressBar videoRef={videoRef} />
         <TimeDisplay time={totalTime} label="Total Time" />
       </div>
-      <div className={styles.controlsContainer}>
-        <div className={styles.leftControls}>
+      <div className="controlsContainer">
+        <div className="leftControls">
           <ControlButton iconSrc={isPlaying
             ? "https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/de9d637c524d7313501c658fa13cbe765b850d93f946610e450adffbb7b1ffdd?apiKey=0c364b68c1644e14b12786de4095f82b&"
             : "https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/1b76e9e35e31b7a418eaf282ce4c0e4e0?apiKey=0c364b68c1644e14b12786de4095f82b&"} label="Play/Pause"
@@ -40,7 +40,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentTime, totalTime, video
           />
           <VolumeControl volume={volume} onVolumeChange={onVolumeChange} />
         </div>
-        <div className={styles.rightControls}>
+        <div className="rightControls">
           <ControlButton iconSrc="https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/dea79ddcc633ec1578e572811fbfaa9b01cb0a99a3c579fffa1454e0cb1ae415?apiKey=0c364b68c1644e14b12786de4095f82b&" label="Shuffle" />
           <ControlButton 
             iconSrc="https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/10344c95d8eccd6a57118b86e8a266ee1e64580fb26df10dd7ffa23d8d9f1b98?apiKey=0c364b68c1644e14b12786de4095f82b&"

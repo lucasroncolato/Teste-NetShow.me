@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './VideoContent.module.css';
+import './VideoContent.css';
 import VideoPlayer from './VideoPlayer';
 import ContentDetails from './ContentDetails';
 import RelatedContent from './RelatedContent';
@@ -38,7 +38,7 @@ const VideoContent: React.FC<VideoContentProps> = ({
   videoId,
 }) => {
   const [loading, setLoading] = useState(true);
-  const [video, setVideo] = useState<any>(null); // Estado para armazenar os dados do vídeo
+  const [video, setVideo] = useState<any>(null);
   const [likes, setLikes] = useState(0);
 
   useEffect(() => {
@@ -78,9 +78,9 @@ const VideoContent: React.FC<VideoContentProps> = ({
   if (loading) {
     return <SkeletonLoader />;
   }
-
+console.log(likes)
   return (
-    <div className={styles.videoContent}>
+    <div className="videoContent">
       <VideoPlayer src={videoSrc} duration={duration} />
       <ContentDetails
         title={title}

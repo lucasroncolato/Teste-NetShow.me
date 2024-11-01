@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './AudioPlayer.module.css';
+import './AudioPlayer.css';
 
 interface VolumeControlProps {
   volume: number; // Propriedade do volume atual
@@ -10,7 +10,7 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onVolumeChange })
   const [isDragging, setIsDragging] = useState(false);
 
   const updateVolume = (offsetX: number) => {
-    const rect = (document.querySelector(`.${styles.volumeControl}`) as HTMLElement).getBoundingClientRect();
+    const rect = (document.querySelector(`.volumeControl`) as HTMLElement).getBoundingClientRect();
     const newVolume = Math.max(0, Math.min((offsetX / rect.width) * 100, 100));
     onVolumeChange(Math.round(newVolume)); // Atualiza o volume com o valor arredondado
   };
@@ -41,7 +41,7 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onVolumeChange })
 
   return (
     <div
-      className={styles.volumeControl}
+      className="volumeControl"
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -49,10 +49,10 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onVolumeChange })
       onMouseDown={handleMouseDown}
       style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
     >
-      <div className={styles.volumeBar} />
-      <div className={styles.volumeSlider} style={{ width: `${volume}%`, backgroundColor: 'rgba(43, 161, 218, 1)' }} />
+      <div className="volumeBar" />
+      <div className="volumeSlider" style={{ width: `${volume}%`, backgroundColor: 'rgba(43, 161, 218, 1)' }} />
       <div
-        className={styles.volumeHandle}
+        className="volumeHandle"
         style={{ left: `${volume}%`, backgroundColor: 'rgba(43, 161, 218, 1)' }}
       />
     </div>

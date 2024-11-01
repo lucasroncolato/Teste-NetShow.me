@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
-import styles from './VideoContent.module.css';
+import './VideoContent.css';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 
 interface VideoPlayerProps {
@@ -28,7 +28,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
   };
 
   useEffect(() => {
-    console.log("Duração recebida:", duration); // Debugging
     const totalDuration = parseFloat(duration);
     if (!isNaN(totalDuration)) {
       setFormattedDuration(formatDuration(totalDuration));
@@ -147,17 +146,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
   };
 
   return (
-    <section className={styles.videoPlayer}>
-      <div className={styles.videoWrapper}>
+    <section className="videoPlayer">
+      <div className="videoWrapper">
         {isLoading && (
-          <div className={styles.loadingIndicator}>
+          <div className="loadingIndicator">
             <span>Carregando...</span>
           </div>
         )}
         <video
           ref={videoRef}
           controls={false}
-          className={styles.video}
+          className="video"
           preload="metadata"
           onClick={togglePlayPause}
         >
@@ -165,7 +164,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
         </video>
         <audio ref={audioRef} preload="metadata" />
       </div>
-      <div className={styles.videoControls}>
+      <div className="videoControls">
         <AudioPlayer 
           currentTime={currentTime} // Altera para usar o estado currentTime
           totalTime={formattedDuration} // Passa a duração formatada
@@ -180,8 +179,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
           isFullscreen={isFullscreen}
         />
       </div>
-      <button className={styles.closeButton} aria-label="Close video">
-        <img src="https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/c8c5f13e63ce2de7071cc0377b3913a113e8abc849d6be309ef7e6c96fbdf404?apiKey=0c364b68c1644e14b12786de4095f82b&" alt="" className={styles.closeIcon} />
+      <button className="closeButton" aria-label="Close video">
+        <img src="https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/c8c5f13e63ce2de7071cc0377b3913a113e8abc849d6be309ef7e6c96fbdf404?apiKey=0c364b68c1644e14b12786de4095f82b&" alt="" className="closeIcon" />
       </button>
     </section>
   );

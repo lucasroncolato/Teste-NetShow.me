@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import styles from './AudioPlayer.module.css';
+import './AudioPlayer.css';
 
 interface ProgressBarProps {
   videoRef: React.RefObject<HTMLVideoElement>;
@@ -29,7 +29,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
 
   // Função para calcular e atualizar o tempo do vídeo
   const updateVideoTime = (offsetX: number) => {
-    const rect = (document.querySelector(`.${styles.progressBar}`) as HTMLElement).getBoundingClientRect();
+    const rect = (document.querySelector(`.progressBar`) as HTMLElement).getBoundingClientRect();
     const newProgress = Math.max(0, Math.min((offsetX / rect.width) * 100, 100));
     
     if (videoRef.current) {
@@ -65,7 +65,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
 
   return (
     <div
-      className={styles.progressBar}
+      className="progressBar"
       role="progressbar"
       aria-valuenow={progress}
       aria-valuemin={0}
@@ -76,9 +76,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
       onMouseDown={handleProgressClick}
       style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
     >
-      <div className={styles.progress} style={{ width: `${progress}%` }} />
+      <div className="progress" style={{ width: `${progress}%` }} />
       <div
-        className={styles.progressHandle}
+        className="progressHandle"
         tabIndex={0}
         aria-label="Seek"
         style={{ right: `${100 - progress}%` }}

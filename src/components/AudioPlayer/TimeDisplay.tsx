@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from './AudioPlayer.module.css';
+import './AudioPlayer.css';
 
 interface TimeDisplayProps {
   time: string;
@@ -9,7 +9,7 @@ interface TimeDisplayProps {
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({ time, label }) => {
   return (
-    <div className={styles.timeDisplay} aria-label={label}>
+    <div className="timeDisplay" aria-label={label}>
       {time}
     </div>
   );

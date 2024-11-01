@@ -334,7 +334,7 @@
   }
 }
 
-.contentTitle {
+.contentVideoTitle {
   font-feature-settings: "liga" off, "clig" off;
   align-self: flex-start;
   gap: 16px;
@@ -345,7 +345,7 @@
 }
 
 @media (max-width: 991px) {
-  .contentTitle {
+  .contentVideoTitle {
     padding: 0 20px;
   }
 }
@@ -477,13 +477,13 @@
   height: 22px;
 }
 
-.audioPlayer {
+.audioPlayerVideo {
   width: calc(100% - 120px);
   margin: 24px 60px;
 }
 
 @media (max-width: 991px) {
-  .audioPlayer {
+  .audioPlayerVideo {
     width: calc(100% - 40px);
     margin: 24px 20px;
   }

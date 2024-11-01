@@ -38,14 +38,12 @@ const VideoContent: React.FC<VideoContentProps> = ({
   videoId,
 }) => {
   const [loading, setLoading] = useState(true);
-  const [video, setVideo] = useState<any>(null);
   const [likes, setLikes] = useState(0);
 
   useEffect(() => {
     const fetchVideo = async () => {
       try {
         const videoData = await getVideoById(videoId);
-        setVideo(videoData);
         setLikes(videoData.likes);
       } catch (error) {
         console.error("Failed to fetch video:", error);
@@ -78,7 +76,7 @@ const VideoContent: React.FC<VideoContentProps> = ({
   if (loading) {
     return <SkeletonLoader />;
   }
-console.log(likes)
+  
   return (
     <div className="videoContent">
       <VideoPlayer src={videoSrc} duration={duration} />

@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useState } from 'react'
-import { NavLink, Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
+import {  Outlet, ScrollRestoration } from 'react-router-dom'
 import './stylesheets/App.css'
 import './stylesheets/Header.css';
 import { useAtomValue } from 'jotai'
@@ -14,7 +14,7 @@ export default function App() {
       window.scrollTo({ top: 0 })
     else if (scrollPosition > 0)
       window.scrollTo({ top: scrollPosition })
-  }, [lockScrolling])
+  }, [lockScrolling,scrollPosition])
 
   const style = {
     position: 'fixed',
@@ -31,7 +31,6 @@ export default function App() {
 }
 
 function Nav() {
-  const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
 
 

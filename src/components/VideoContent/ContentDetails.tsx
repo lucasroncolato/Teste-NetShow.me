@@ -22,8 +22,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({
   summary,
   complementaryFiles = [], // Define um valor padrão como array vazia
   text,
-  audioSrc,
-  videoId,
+  audioSrc,  
   likes,
   onLike,
   onDislike,

@@ -1,35 +1,59 @@
-
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import AudioPlayer from './AudioPlayer';
 
-describe('AudioPlayer', () => {
-  it('renders without crashing', () => {
-    render(<AudioPlayer currentTime="00:00" totalTime="55:59" />);
-    expect(screen.getByLabelText('Audio Player')).toBeInTheDocument();
+const mockProps = {
+  currentTime: '0:30',
+  totalTime: '3:00',
+  videoRef: { current: document.createElement('video') } as React.RefObject<HTMLVideoElement>,
+  onPlayPause: jest.fn(),
+  isPlaying: false,
+  onVolumeChange: jest.fn(),
+  volume: 50,
+  onMuteToggle: jest.fn(),
+  isMuted: false,
+  onFullscreenToggle: jest.fn(),
+  isFullscreen: false,
+};
+
+describe('AudioPlayer Component', () => {
+  test('renders audio player with current and total time', () => {
+    render(<AudioPlayer {...mockProps} />);
+
+    expect(screen.getByText(mockProps.currentTime)).toBeInTheDocument();
+    expect(screen.getByText(mockProps.totalTime)).toBeInTheDocument();
   });
 
-  it('displays current and total time', () => {
-    render(<AudioPlayer currentTime="00:00" totalTime="55:59" />);
-    expect(screen.getByText('00:00')).toBeInTheDocument();
-    expect(screen.getByText('55:59')).toBeInTheDocument();
+  test('toggles play/pause when play button is clicked', () => {
+    render(<AudioPlayer {...mockProps} />);
+    const playButton = screen.getByLabelText('Play/Pause');
+
+    fireEvent.click(playButton);
+    expect(mockProps.onPlayPause).toHaveBeenCalled();
   });
 
-  it('renders control buttons', () => {
-    render(<AudioPlayer currentTime="00:00" totalTime="55:59" />);
-    expect(screen.getByLabelText('Previous Track')).toBeInTheDocument();
-    expect(screen.getByLabelText('Play/Pause')).toBeInTheDocument();
-    expect(screen.getByLabelText('Shuffle')).toBeInTheDocument();
-    expect(screen.getByLabelText('Repeat')).toBeInTheDocument();
+  test('mutes and unmutes when mute button is clicked', () => {
+    render(<AudioPlayer {...mockProps} />);
+    const muteButton = screen.getByLabelText('Mute');
+
+    fireEvent.click(muteButton);
+    expect(mockProps.onMuteToggle).toHaveBeenCalled();
   });
 
-  it('renders progress bar', () => {
-    render(<AudioPlayer currentTime="00:00" totalTime="55:59" />);
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  test('adjusts volume when volume control is changed', () => {
+    render(<AudioPlayer {...mockProps} />);
+    const volumeControl = screen.getByRole('slider');
+
+    fireEvent.change(volumeControl, { target: { value: 75 } });
+    expect(mockProps.onVolumeChange).toHaveBeenCalledWith(75);
   });
 
-  it('renders volume control', () => {
-    render(<AudioPlayer currentTime="00:00" totalTime="55:59" />);
-    expect(screen.getByRole('slider', { name: 'Volume' })).toBeInTheDocument();
+  test('toggles fullscreen when fullscreen button is clicked', () => {
+    render(<AudioPlayer {...mockProps} />);
+    const fullscreenButton = screen.getByLabelText('Fullscreen');
+
+    fireEvent.click(fullscreenButton);
+    expect(mockProps.onFullscreenToggle).toHaveBeenCalled();
   });
 });

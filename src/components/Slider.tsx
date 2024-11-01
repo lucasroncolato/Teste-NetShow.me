@@ -15,7 +15,7 @@ type SliderProps = {
 
 const Slider: React.FC<SliderProps> = ({ items }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [activeAutoplay, setActiveAutoplay] = useState(true);
+    const [activeAutoplay] = useState(true);
     const [isAnimating, setIsAnimating] = useState(false);
     const autoplayRef = useRef<number | undefined>();
 

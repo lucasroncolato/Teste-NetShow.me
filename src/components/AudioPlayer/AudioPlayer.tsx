@@ -19,7 +19,7 @@ interface AudioPlayerProps {
   isFullscreen: boolean; // Adiciona a prop para o estado de fullscreen
 }
 
-const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentTime, totalTime, videoRef, onPlayPause, isPlaying, onVolumeChange, volume, onMuteToggle, isMuted, onFullscreenToggle, isFullscreen }) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentTime, totalTime, videoRef, onPlayPause, isPlaying, onVolumeChange, volume, onMuteToggle, onFullscreenToggle}) => {
   return (
     <section className="audioPlayer" aria-label="Audio Player">
       <div className="timeControls">

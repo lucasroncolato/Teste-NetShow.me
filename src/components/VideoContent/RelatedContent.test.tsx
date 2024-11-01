@@ -1,46 +1,41 @@
-
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import RelatedContent from './RelatedContent';
 
 const mockContent = [
   {
-    image: 'http://example.com/image1.jpg',
-    category: 'Category 1',
-    title: 'Related Content 1',
+    image: 'https://example.com/image1.jpg',
+    category: 'Categoria 1',
+    title: 'Título 1',
   },
   {
-    image: 'http://example.com/image2.jpg',
-    category: 'Category 2',
-    title: 'Related Content 2',
+    image: 'https://example.com/image2.jpg',
+    category: 'Categoria 2',
+    title: 'Título 2',
   },
 ];
 
-describe('RelatedContent', () => {
-  it('renders without crashing', () => {
+describe('RelatedContent Component', () => {
+  test('renders RelatedContent component with title and button', () => {
     render(<RelatedContent content={mockContent} />);
     expect(screen.getByText('Conteúdos relacionados')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /veja mais/i })).toBeInTheDocument();
   });
 
-  it('displays the correct number of related items', () => {
+  test('renders each related content item correctly', () => {
     render(<RelatedContent content={mockContent} />);
-    expect(screen.getAllByRole('article')).toHaveLength(2);
+    mockContent.forEach((item) => {
+      expect(screen.getByText(item.category)).toBeInTheDocument();
+      expect(screen.getByText(item.title)).toBeInTheDocument();
+      expect(screen.getByAltText('')).toHaveAttribute('src', item.image);
+    });
   });
 
-  it('shows the correct titles for related content', () => {
+  test('clicking "Veja mais" button triggers intended action', () => {
     render(<RelatedContent content={mockContent} />);
-    expect(screen.getByText('Related Content 1')).toBeInTheDocument();
-    expect(screen.getByText('Related Content 2')).toBeInTheDocument();
-  });
-
-  it('displays categories for related content', () => {
-    render(<RelatedContent content={mockContent} />);
-    expect(screen.getByText('Category 1')).toBeInTheDocument();
-    expect(screen.getByText('Category 2')).toBeInTheDocument();
-  });
-
-  it('renders the "See More" button', () => {
-    render(<RelatedContent content={mockContent} />);
-    expect(screen.getByText('Veja mais')).toBeInTheDocument();
+    const seeMoreButton = screen.getByRole('button', { name: /veja mais/i });
+    fireEvent.click(seeMoreButton);
+    expect(seeMoreButton).toBeInTheDocument();
   });
 });

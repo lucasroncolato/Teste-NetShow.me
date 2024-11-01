@@ -28,7 +28,7 @@ Este projeto é uma aplicação de área de membros desenvolvida em React que ex
 
 1. **Clone o Repositório**
    ```bash
-   git clone https://github.com/seu-usuario/area-de-membros-react.git
+   https://github.com/lucasroncolato/Teste-NetShow.me.git
    cd area-de-membros-react
 Instale as Dependências Execute o comando abaixo para instalar as dependências do projeto.
 
@@ -84,5 +84,3 @@ Documentação do json-server
 jwplayer e bitmovin para reprodução de vídeos HLS.
 Conclusão
 Esse projeto foi desenvolvido para demonstrar habilidades em React, navegação, integração com APIs, skeleton loading, animações e testes.
-
-Boa sorte!

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Billboard from './Billboard';
+import '../stylesheets/HeroSection.css';
 
 type FeaturedItem = {
     title: string;
@@ -15,48 +16,64 @@ type SliderProps = {
 
 const Slider: React.FC<SliderProps> = ({ items }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [activeAutoplay] = useState(true);
     const [isAnimating, setIsAnimating] = useState(false);
-    const autoplayRef = useRef<number | undefined>();
+    const [progress, setProgress] = useState(0);  // Barra de progresso
 
     const settings = {
         maxItems: items.length,
         speed: 1000,
-        autoplay: true,
         autoplaySpeed: 3000,
     };
-    const goTo = useCallback(
-        (index: number) => {
-            if (!isAnimating) {
-                setCurrentIndex(index);
-                setIsAnimating(true);
 
-                setTimeout(() => {
-                    setIsAnimating(false);
-                }, settings.speed);
-            }
-        },
-        [isAnimating, currentIndex]
-    );
+    const goTo = useCallback((index: number) => {
+        if (!isAnimating) {
+            setCurrentIndex(index);
+            setIsAnimating(true);
+            setProgress(0);  // Reinicia o progresso
+
+            setTimeout(() => {
+                setIsAnimating(false);
+            }, settings.speed);
+        }
+    }, [isAnimating]);
 
     const goNext = () => {
         goTo(currentIndex >= settings.maxItems - 1 ? 0 : currentIndex + 1);
     };
 
     useEffect(() => {
-        if (settings.autoplay && activeAutoplay) {
-            clearTimeout(autoplayRef.current);
-            autoplayRef.current = window.setTimeout(() => {
-                goNext();
-            }, settings.autoplaySpeed);
-        }
-        return () => clearTimeout(autoplayRef.current);
+        const progressInterval = setInterval(() => {
+            setProgress((prevProgress) => {
+                if (prevProgress >= 100) {
+                    goNext();
+                    return 0;
+                }
+                return prevProgress + 1;
+            });
+        }, settings.autoplaySpeed / 100); // Atualiza o progresso de acordo com a velocidade de autoplay
 
-    }, [currentIndex, activeAutoplay, isAnimating]);
+        return () => clearInterval(progressInterval);
+    }, [currentIndex, goNext, settings.autoplaySpeed]);
 
     return (
         <div className="slider">
             <Billboard featuredItems={items[currentIndex]} />
+
+            <div className="loadingBanners">
+                {items.map((_, index) => (
+                    <div
+                        key={index}
+                        className={`loadingBanner ${index === currentIndex ? 'loadingBannerActive' : ''}`}
+                    >
+                        {index === currentIndex && (
+                            <div
+                                className="progress-Bar"
+                                style={{ width: `${progress}%` }}
+                            />
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

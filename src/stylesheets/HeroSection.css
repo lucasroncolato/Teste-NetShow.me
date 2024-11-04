@@ -97,28 +97,34 @@
 
 .loadingBanners {
   display: flex;
-  margin-top: 32px;
   width: 100%;
   align-items: flex-start;
   gap: 16px;
   justify-content: flex-start;
   flex-wrap: wrap;
-}
-
-@media (max-width: 991px) {
-  .loadingBanners {
-    max-width: 100%;
-  }
+  padding-left: 122px;
 }
 
 .loadingBanner {
-  border-radius: 100px;
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
   width: 10px;
   height: 10px;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: width 0.3s ease;
 }
 
 .loadingBannerActive {
+  width: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.progress-Bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 100px;
   background-color: rgba(255, 255, 255, 0.7);
+  transition: width 0.1s linear;
 }

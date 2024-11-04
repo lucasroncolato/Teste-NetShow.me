@@ -32,6 +32,9 @@
   justify-content: center;
   flex-wrap: wrap;
   flex: 1;
+  @media screen and (max-width: 799px) {
+    display: none;
+  }
 }
 
 .menuItem {

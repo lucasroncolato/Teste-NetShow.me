@@ -6,10 +6,11 @@ import Slider from "../components/Slider";
 import SkeletonLoaderSlider from "../components/SkeletonLoaderSlider";
 import SkeletonLoaderRow from "../components/SkeletonLoaderRow";
 import { useEffect, useState } from 'react';
-import { getVideosByCategory } from '../services/api';
+import { getVideosByCategory, getVideos } from '../services/api';
 
 export default function Home() {
   const [categories, setCategories] = useState<any[]>([]);
+  const [videos, setVideos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,8 +19,14 @@ export default function Home() {
       setCategories(data);
       setLoading(false);
     };
+    const fetchVideos = async () => {
+      const data = await getVideos();
+      setVideos(data);
+      setLoading(false);
+    };
 
     fetchCategories();
+    fetchVideos();
   }, []);
 
   return (
@@ -27,7 +34,7 @@ export default function Home() {
       {loading ? (
         <SkeletonLoaderSlider />
       ) : (
-        <Slider items={categories} />
+        <Slider items={videos} />
       )}
 
       {loading ? (

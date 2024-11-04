@@ -71,7 +71,7 @@
   margin: auto 0;
 }
 
-.navigation {
+.navigationVideo {
   align-self: stretch;
   display: flex;
   min-width: 240px;
@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 991px) {
-  .navigation {
+  .navigationVideo {
     max-width: 100%;
   }
 }

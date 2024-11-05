@@ -8,7 +8,7 @@ jest.mock('hls.js');
 
 const mockProps = {
   src: 'https://example.com/test-video.m3u8',
-  duration: '300', // 5 minutos em segundos
+  duration: '300',
 };
 
 describe('VideoPlayer Component', () => {
@@ -37,7 +37,7 @@ describe('VideoPlayer Component', () => {
 
   test('formats and displays video duration correctly', async () => {
     render(<VideoPlayer {...mockProps} />);
-    await waitFor(() => expect(screen.getByText('5:00')).toBeInTheDocument()); // 300 segundos em 5:00
+    await waitFor(() => expect(screen.getByText('5:00')).toBeInTheDocument());
   });
 
   test('plays and pauses video and audio on togglePlayPause', async () => {
@@ -70,7 +70,7 @@ describe('VideoPlayer Component', () => {
     await waitFor(() => expect(videoElement.volume).toBe(0));
 
     fireEvent.click(screen.getByLabelText('Mute button'));
-    await waitFor(() => expect(videoElement.volume).toBe(0.5)); // Assume valor anterior era 50
+    await waitFor(() => expect(videoElement.volume).toBe(0.5));
   });
 
   test('toggles fullscreen mode correctly', async () => {

@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import './VideoContent.css';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
+import { updateWatchTime } from '../../services/api';
 
 interface VideoPlayerProps {
   src: string;
-  duration: string; // duração deve ser um número ou uma string que pode ser convertida em número
+  duration: string;
+  videoId: string;
+  initialTimeWatched?: number;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration, videoId, initialTimeWatched }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -17,10 +20,49 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
   const [previousVolume, setPreviousVolume] = useState(50);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [currentTime, setCurrentTime] = useState('0:00'); // Estado para currentTime
-  const [formattedDuration, setFormattedDuration] = useState('0:00'); // Estado para a duração formatada
+  const [currentTime, setCurrentTime] = useState('0:00');
+  const [formattedDuration, setFormattedDuration] = useState('0:00');
+  const [currentTimeVideo, setCurrentTimeVideo] = useState(initialTimeWatched);
 
-  // Função para formatar a duração
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (videoRef.current && videoRef.current.currentTime > 0) {
+        setCurrentTimeVideo(videoRef.current.currentTime);
+        saveWatchTime(videoId, videoRef.current.currentTime);
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [videoId]);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    if (videoElement) {
+      const onLoadedData = () => {
+        setIsLoading(false);
+        setCurrentTimeVideo(initialTimeWatched || 0);
+        videoElement.currentTime = initialTimeWatched || 0;
+      };
+
+      videoElement.addEventListener('loadeddata', onLoadedData);
+
+      return () => {
+        videoElement.removeEventListener('loadeddata', onLoadedData);
+      };
+    }
+  }, [initialTimeWatched]);
+
+
+  const saveWatchTime = async (id: string, time: number) => {
+    try {
+      await updateWatchTime(id, time);
+    } catch (error) {
+      console.error("Erro ao salvar o tempo assistido:", error);
+    }
+  };
+
+
   const formatDuration = (duration: number) => {
     const minutes = Math.floor(duration / 60);
     const seconds = Math.floor(duration % 60);
@@ -67,7 +109,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
         hls.loadSource(src);
         hls.attachMedia(videoElement);
 
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {});
+        hls.on(Hls.Events.MANIFEST_PARSED, () => { });
 
         videoElement.addEventListener('waiting', () => {
           setIsLoading(true);
@@ -90,10 +132,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.src = src; // Atribui o src ao elemento de áudio
-      audioRef.current.load(); // Carrega a nova fonte de áudio
+      audioRef.current.src = src;
+      audioRef.current.load();
     }
-  }, [src]); // Executa quando o src muda
+  }, [src]);
 
   const togglePlayPause = () => {
     const videoElement = videoRef.current;
@@ -114,6 +156,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
       setIsPlaying(!isPlaying);
     }
   };
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    if (videoElement) {
+      videoElement.play().catch((error) => {
+        console.error('Erro ao tentar iniciar automaticamente:', error);
+      });
+      setIsPlaying(true);
+    }
+  }, []);
 
   const handleVolumeChange = (newVolume: number) => {
     setVolume(newVolume);
@@ -150,7 +203,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
       <div className="videoWrapper">
         {isLoading && (
           <div className="loadingIndicator">
-            <span>Carregando...</span>
+            <div id="loading-wrapper">
+              <div id="loading-text">LOADING</div>
+              <div id="loading-content"></div>
+            </div>
           </div>
         )}
         <video
@@ -165,11 +221,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, duration }) => {
         <audio ref={audioRef} preload="metadata" />
       </div>
       <div className="videoControls">
-        <AudioPlayer 
-          currentTime={currentTime} // Altera para usar o estado currentTime
-          totalTime={formattedDuration} // Passa a duração formatada
-          videoRef={videoRef} 
-          onPlayPause={togglePlayPause} 
+        <AudioPlayer
+          currentTime={currentTime}
+          totalTime={formattedDuration}
+          videoRef={videoRef}
+          onPlayPause={togglePlayPause}
           isPlaying={isPlaying}
           onVolumeChange={handleVolumeChange}
           volume={volume}

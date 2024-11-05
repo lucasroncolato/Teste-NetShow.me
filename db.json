@@ -46,7 +46,8 @@
       "thumbnail": "https://static-ott.netshow.me/sites/70/media/268998/Over-The-Cast---20.png",
       "site_id": 70,
       "views": 0,
-      "likes": 0
+      "likes": 0,
+      "timeWatched": 2570.530426
     },
     {
       "id": "89112",
@@ -58,7 +59,8 @@
       "thumbnail": "https://static-ott.netshow.me/sites/70/media/264259/Over-The-Cast---19.png",
       "site_id": 70,
       "views": 0,
-      "likes": 0
+      "likes": 0,
+      "timeWatched": 959.643596
     },
     {
       "id": "88338",
@@ -310,7 +312,8 @@
       "thumbnail": "https://static-ott.netshow.me/sites/70/media/237330/Netshow.me-Talks---05.png",
       "site_id": 70,
       "views": 0,
-      "likes": 0
+      "likes": 0,
+      "timeWatched": 2236.461578
     },
     {
       "id": "28635",

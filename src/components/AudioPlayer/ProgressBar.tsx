@@ -20,18 +20,16 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
 
       videoElement.addEventListener('timeupdate', handleTimeUpdate);
 
-      // Clean up event listener on unmount
       return () => {
         videoElement.removeEventListener('timeupdate', handleTimeUpdate);
       };
     }
   }, [videoRef]);
 
-  // Função para calcular e atualizar o tempo do vídeo
   const updateVideoTime = (offsetX: number) => {
     const rect = (document.querySelector(`.progressAudioBar`) as HTMLElement).getBoundingClientRect();
     const newProgress = Math.max(0, Math.min((offsetX / rect.width) * 100, 100));
-    
+
     if (videoRef.current) {
       const videoElement = videoRef.current;
       videoElement.currentTime = (newProgress / 100) * videoElement.duration;
@@ -41,26 +39,26 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
 
   const handleProgressClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const offsetX = event.clientX - (event.currentTarget as HTMLElement).getBoundingClientRect().left;
-    updateVideoTime(offsetX); // Atualiza o tempo do vídeo ao clicar na barra
+    updateVideoTime(offsetX);
   };
 
   const handleMouseDown = () => {
-    setIsDragging(true); // Começa a arrastar
+    setIsDragging(true);
   };
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (isDragging) {
       const offsetX = event.clientX - (event.currentTarget as HTMLElement).getBoundingClientRect().left;
-      updateVideoTime(offsetX); // Atualiza o tempo do vídeo ao arrastar
+      updateVideoTime(offsetX);
     }
   };
 
   const handleMouseUp = () => {
-    setIsDragging(false); // Para de arrastar
+    setIsDragging(false);
   };
 
   const handleMouseLeave = () => {
-    setIsDragging(false); // Para de arrastar se o mouse sair da barra
+    setIsDragging(false);
   };
 
   return (

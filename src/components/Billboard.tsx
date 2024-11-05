@@ -1,4 +1,3 @@
-// Billboard.tsx
 import { useNavigate } from 'react-router-dom';
 import { PlayIcon } from '../Icons/Player';
 

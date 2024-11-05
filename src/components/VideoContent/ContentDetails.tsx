@@ -6,13 +6,13 @@ interface ContentDetailsProps {
   category: string;
   date: string;
   summary: string;
-  complementaryFiles: Array<{ name: string, url: string }> | undefined; // Permite que seja undefined
+  complementaryFiles: Array<{ name: string, url: string }> | undefined;
   text: string;
   audioSrc: string;
   videoId: string;
-  likes: number; // Passa o número de likes como prop
-  onLike: () => Promise<void>; // Função para curtir o vídeo
-  onDislike: () => Promise<void>; // Função para descurtir o vídeo
+  likes: number;
+  onLike: () => Promise<void>;
+  onDislike: () => Promise<void>;
 }
 
 const ContentDetails: React.FC<ContentDetailsProps> = ({
@@ -20,7 +20,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({
   category,
   date,
   summary,
-  complementaryFiles = [], // Define um valor padrão como array vazia
+  complementaryFiles = [],
   text,
   audioSrc,  
   likes,
@@ -62,7 +62,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({
             </a>
           ))
         ) : (
-          <p>Nenhum arquivo complementar disponível.</p> // Mensagem se não houver arquivos
+          <p>Nenhum arquivo complementar disponível.</p>
         )}
       </div>
       <h2 className="textTitle">Texto</h2>

@@ -17,7 +17,7 @@ type SliderProps = {
 const Slider: React.FC<SliderProps> = ({ items }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
-    const [progress, setProgress] = useState(0);  // Barra de progresso
+    const [progress, setProgress] = useState(0);
 
     const settings = {
         maxItems: items.length,
@@ -29,7 +29,7 @@ const Slider: React.FC<SliderProps> = ({ items }) => {
         if (!isAnimating) {
             setCurrentIndex(index);
             setIsAnimating(true);
-            setProgress(0);  // Reinicia o progresso
+            setProgress(0);
 
             setTimeout(() => {
                 setIsAnimating(false);
@@ -50,7 +50,7 @@ const Slider: React.FC<SliderProps> = ({ items }) => {
                 }
                 return prevProgress + 1;
             });
-        }, settings.autoplaySpeed / 100); // Atualiza o progresso de acordo com a velocidade de autoplay
+        }, settings.autoplaySpeed / 100);
 
         return () => clearInterval(progressInterval);
     }, [currentIndex, goNext, settings.autoplaySpeed]);

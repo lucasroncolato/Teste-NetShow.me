@@ -7,7 +7,7 @@ export default function RowItem({ item, category }: { item: any, category: any }
 
   return (
     <>
-      <SplideSlide className={`row-item}`} onClick={() => navigate(`/video/${item.id}`)}>
+      <SplideSlide className={`row-item`} onClick={() => navigate(`/video/${item.id}`)}>
         <article key={item.id} className="contentItem">
           <img src={item.thumbnail} alt="" className="contentImage" />
           <div className="contentInfo">

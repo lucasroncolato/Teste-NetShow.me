@@ -29,7 +29,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
 
   // Função para calcular e atualizar o tempo do vídeo
   const updateVideoTime = (offsetX: number) => {
-    const rect = (document.querySelector(`.progressBar`) as HTMLElement).getBoundingClientRect();
+    const rect = (document.querySelector(`.progressAudioBar`) as HTMLElement).getBoundingClientRect();
     const newProgress = Math.max(0, Math.min((offsetX / rect.width) * 100, 100));
     
     if (videoRef.current) {
@@ -65,8 +65,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
 
   return (
     <div
-      className="progressBar"
-      role="progressbar"
+      className="progressAudioBar"
+      role="progressaudiobar"
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
@@ -76,7 +76,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ videoRef }) => {
       onMouseDown={handleProgressClick}
       style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
     >
-      <div className="progress" style={{ width: `${progress}%` }} />
+      <div className="progressAudio" style={{ width: `${progress}%` }} />
       <div
         className="progressHandle"
         tabIndex={0}

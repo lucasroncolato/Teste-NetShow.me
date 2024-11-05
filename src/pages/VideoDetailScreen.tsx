@@ -36,14 +36,14 @@ export default function VideoDetailScreen() {
     <VideoContent
       title={video.title}
       category={video.category}
-      date={new Date(video.created_at).toLocaleDateString()} // Formata a data
-      duration="N/A" // Adicione a duração se disponível no JSON
+      date={new Date(video.created_at).toLocaleDateString()}
+      duration="N/A"
       videoSrc={video.hls_path}
       summary={video.description}
-      complementaryFiles={[]} // Adicione se houver dados de arquivos complementares
+      complementaryFiles={[]}
       text={video.description}
-      audioSrc={''} // Adicione o caminho do áudio se disponível
-      relatedContent={[]} // Adicione conteúdo relacionado, se houver
+      audioSrc={''} 
+      relatedContent={[]}
       videoId={`${id}`}    />
   );
 }

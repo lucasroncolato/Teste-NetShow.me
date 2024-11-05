@@ -1,9 +1,10 @@
 import { CSSProperties, useEffect, useState } from 'react'
-import {  Outlet, ScrollRestoration } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 import './stylesheets/App.css'
 import './stylesheets/Header.css';
 import { useAtomValue } from 'jotai'
 import { lockScrollingAtom, scrollPositionAtom } from './libs/atoms'
+import { PersonIcon,SearchIcon } from './Icons/Header';
 
 export default function App() {
   const lockScrolling = useAtomValue(lockScrollingAtom)
@@ -14,7 +15,7 @@ export default function App() {
       window.scrollTo({ top: 0 })
     else if (scrollPosition > 0)
       window.scrollTo({ top: scrollPosition })
-  }, [lockScrolling,scrollPosition])
+  }, [lockScrolling, scrollPosition])
 
   const style = {
     position: 'fixed',
@@ -68,10 +69,14 @@ function Nav() {
         </nav>
         <div className="userActions">
           <button className="searchButton" aria-label="Search">
-            <img src="https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/293caca88da0bb00f37741e8aee41ec7b65a74306316eb8044a10c043afe3f7a?apiKey=0c364b68c1644e14b12786de4095f82b&" alt="" className="searchIcon" />
+            <span className="searchIcon" >
+            <SearchIcon size={24} color="white" />
+            </span>            
           </button>
           <button className="userProfileButton" aria-label="User profile">
-            <img src="https://cdn.builder.io/api/v1/image/assets/0c364b68c1644e14b12786de4095f82b/d1e0f926970f01d0c4d796791c73b7bebeb379232a1b98fc7347fe9266eba824?apiKey=0c364b68c1644e14b12786de4095f82b&" alt="" className="userIcon" />
+            <span className="userIcon">
+              <PersonIcon size={30} color="#121212" />
+            </span>
           </button>
         </div>
       </div>

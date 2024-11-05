@@ -44,7 +44,7 @@ const Slider: React.FC<SliderProps> = ({ items }) => {
     useEffect(() => {
         const progressInterval = setInterval(() => {
             setProgress((prevProgress) => {
-                if (prevProgress >= 10000000000) {
+                if (prevProgress >= 100) {
                     goNext();
                     return 0;
                 }

@@ -35,7 +35,7 @@
       "site_id": 70,
       "views": 0,
       "likes": 0,
-      "timeWatched": 1773.593435
+      "timeWatched": 213.270062
     },
     {
       "id": "90561",
@@ -85,7 +85,8 @@
       "thumbnail": "https://static-ott.netshow.me/sites/70/media/260805/Over-The-Cast---16.png",
       "site_id": 70,
       "views": 0,
-      "likes": 0
+      "likes": 0,
+      "timeWatched": 16.842309
     },
     {
       "id": "87941",
@@ -109,7 +110,8 @@
       "thumbnail": "https://static-ott.netshow.me/sites/70/media/257917/Over-The-Cast---13.png",
       "site_id": 70,
       "views": 0,
-      "likes": 0
+      "likes": 1,
+      "timeWatched": 782.908522
     },
     {
       "id": "87172",
@@ -145,7 +147,8 @@
       "thumbnail": "https://static-ott.netshow.me/sites/70/media/237297/Over-The-Cast---10.png",
       "site_id": 70,
       "views": 0,
-      "likes": 1
+      "likes": 1,
+      "timeWatched": 0.99848
     },
     {
       "id": "46093",

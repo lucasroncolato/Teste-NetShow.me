@@ -15,7 +15,7 @@ export default function Billboard({ featuredItems }: { featuredItems: any }) {
             <div className="buttonContainer">
               <button className="playButton" onClick={() => navigate(`/video/${featuredItems.id}`)}>
                 <div className="buttonContent">
-                  <span className="playIcon" ><PlayIcon size={30} color="black" /></span>
+                  <span className="playIcon" ><PlayIcon size={24} color="black" /></span>
                   <span className="buttonText">Reproduzir agora</span>
                 </div>
               </button>

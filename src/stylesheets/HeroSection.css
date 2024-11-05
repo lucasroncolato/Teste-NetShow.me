@@ -37,6 +37,7 @@
 @media (max-width: 991px) {
   .title {
     max-width: 100%;
+    font: 500 19px/42px Inter, -apple-system, Roboto, Helvetica, sans-serif;
   }
 }
 
@@ -51,7 +52,7 @@
 
 @media (max-width: 991px) {
   .description {
-    max-width: 100%;
+    display: none;
   }
 }
 
@@ -103,6 +104,10 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   padding-left: 122px;
+  @media screen and (max-width: 799px) {
+    padding-left: 8px;
+    width: 90%;
+  }
 }
 
 .loadingBanner {

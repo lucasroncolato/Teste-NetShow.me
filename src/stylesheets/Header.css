@@ -50,6 +50,51 @@
   gap: 4px;
 }
 
+.menuToggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.navigation.open {
+  display: block;
+}
+
+@media (max-width: 799px) {
+  .navigation {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background-color: #141414;
+    flex-direction: column;
+    padding: 10px 0;
+    z-index: 10;
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .menuItem {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+}
+
 .menuIcon {
   width: 24px;
   height: 24px;

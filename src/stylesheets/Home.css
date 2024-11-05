@@ -495,6 +495,10 @@ ul.splide__pagination {
   aspect-ratio: 15 / 6;
   user-select: none;
   margin-top: -68px;
+  @media screen and (max-width: 799px) {
+    margin-top: 0px;
+    aspect-ratio: 6 / 6;
+  }
 }
 
 .billboard__wrapper {
@@ -525,7 +529,11 @@ ul.splide__pagination {
 .billboard__img {
   width: 100%;
   object-fit: cover;
-  aspect-ratio: 6 / 3;
+  aspect-ratio: 12 / 6;
+  @media screen and (max-width: 799px) {
+    margin-top: 0px;
+    aspect-ratio: 6 / 6;
+  }  
 }
 
 .billboard-info {
@@ -537,6 +545,11 @@ ul.splide__pagination {
   position: absolute;
   top: 0;
   width: 36%;
+
+  @media screen and (max-width: 799px){
+    bottom: 3%;
+    width: 60%;
+  }
 }
 
 .billboard-info__logo {

@@ -38,6 +38,12 @@ export const getVideosByCategory = async () => {
   }));
 };
 
+export const getVideosByCategoryId = async (id: string) => {
+  const { data: videos } = await axios.get(`${BASE_URL}/videos`);
+
+  return videos.filter((video: any) => Number(video.category) === Number(id))
+};
+
 export const likeVideo = async (id: string) => {
   try {
     const video = await getVideoById(id);

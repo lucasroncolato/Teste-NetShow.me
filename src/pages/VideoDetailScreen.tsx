@@ -1,13 +1,15 @@
 import '../stylesheets/VideoDetailScreen.css'
 import { useEffect, useState } from 'react'
 import VideoContent from '../components/VideoContent/VideoContent'
-import { getVideoById } from '../services/api';
+import { getVideoById, getVideosByCategoryId } from '../services/api';
 import { useParams } from 'react-router-dom';
 
 export default function VideoDetailScreen() {
   const { id } = useParams<{ id: string }>();
   const [video, setVideo] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [videoCategory, setVideoCategory] = useState<any>(null);
+  const [loadingVideo, setLoadingVideo] = useState(true);
+  const [loadingCategory, setLoadingCategory] = useState(true);
 
   useEffect(() => {
     const fetchVideo = async () => {
@@ -18,18 +20,35 @@ export default function VideoDetailScreen() {
         } catch (error) {
           console.error("Error fetching video:", error);
         } finally {
-          setLoading(false);
+          setLoadingVideo(false);
         }
       } else {
         console.error("Video ID is undefined");
-        setLoading(false);
+        setLoadingVideo(false);
       }
     };
 
     fetchVideo();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  useEffect(() => {
+    const fetchCategoryVideos = async () => {
+      if (video?.category) {
+        try {
+          const data = await getVideosByCategoryId(video.category);
+          setVideoCategory(data);
+        } catch (error) {
+          console.error("Error fetching category videos:", error);
+        } finally {
+          setLoadingCategory(false);
+        }
+      }
+    };
+
+    if (video) fetchCategoryVideos();
+  }, [video]);
+
+  if (loadingVideo || loadingCategory) return <p>Loading...</p>;
   if (!video) return <p>Video not found</p>;
 
   return (
@@ -42,8 +61,9 @@ export default function VideoDetailScreen() {
       summary={video.description}
       complementaryFiles={[]}
       text={video.description}
-      audioSrc={''} 
-      relatedContent={[]}
-      videoId={`${id}`}    />
+      audioSrc={''}
+      relatedContent={videoCategory || []} // Garante que não seja nulo
+      videoId={`${id}`}
+    />
   );
 }
